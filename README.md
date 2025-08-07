@@ -1,47 +1,114 @@
 # Social Media Influence Analysis
 
-This repository contains the first semester project for the course "22MAT121: Discrete Mathematics".
+This project presents a technically rigorous exploration of social media networks using graph theory and machine learning. By analyzing Facebook page interactions from the [SNAP dataset repository](http://snap.stanford.edu/data/gemsec-Facebook.html), it investigates influence dynamics, network structure, and page behavior using advanced network science techniques.
+
+---
 
 ## Problem Statement
-The project aims to comprehensively analyze the dissemination of information on social media platforms, focusing primarily on Facebook. Through the utilization of graph theoretical methods and machine learning techniques, the project endeavors to unravel the intricate dynamics of social media influence and interactions within digital networks.
+
+Understanding how information spreads across social media platforms is essential for applications in crisis response, marketing, and public engagement. This project models information flow as a graph problem, with accounts as nodes and interactions (e.g., mutual likes) as edges. Through a layered approach involving centrality, community detection, and node classification, the project identifies influential structures and behavioral patterns in verified Facebook networks.
+
+---
 
 ## Objectives
-- Conduct in-depth analysis of social media data using graph theory and machine learning.
-- Visualize network structures to gain insights into the relationships between Facebook accounts.
-- Calculate centrality measures to identify influential nodes and understand their significance within the network.
-- Perform statistical analysis to quantify various aspects of the dataset and reveal trends, patterns, and anomalies.
-- Utilize community detection techniques to uncover clusters and patterns of interactions within different categories of Facebook pages.
-- Characterize Facebook pages based on features and network structure to understand their roles and behaviors within the network.
+
+- Analyze social media data using **graph-theoretic and ML techniques**
+- Visualize Facebook network structures and interpret interaction patterns
+- Identify influential nodes via **centrality metrics** (degree, closeness, betweenness)
+- Quantify structural characteristics via **statistical analysis**
+- Detect community structure using **greedy modularity-based clustering**
+- Characterize pages using **graph embeddings (RandomWalk/Node2Vec)** and **Random Forest classification**
+
+---
 
 ## Datasets Used
-The project leverages Facebook datasets obtained from the [Snap Stanford repository](http://snap.stanford.edu/data/gemsec-Facebook.html). These datasets consist of CSV files capturing interactions between Facebook accounts, along with a JSON file providing additional attributes for each account.
+
+From SNAP’s Facebook verified page dataset (2017), categorized by page type:
+- **Files**: `*_edges.csv` (edge lists per category), `dataset_descriptions.txt`
+- **Categories**: Government, Politicians, Companies, TV Shows, Artists, Athletes, Public Figures, News Sites
+- **Format**: Each edge represents mutual page likes between `node_1` and `node_2`
+
+---
 
 ## Methodology
-1. **Graph Visualization:** Utilize NetworkX to visualize network structures, representing Facebook accounts as nodes and interactions as edges.
-2. **Centrality Analysis:** Calculate degree centrality, closeness centrality, and betweenness centrality to identify influential nodes within the network.
-3. **Statistical Analysis:** Conduct statistical analysis to quantify various aspects of the dataset, including the number of nodes, edges, average degree, and clustering coefficient, providing insights into the structural dynamics of different categories of Facebook pages.
-4. **Community Detection:** Employ community detection techniques to uncover clusters of nodes with dense intra-cluster connections, revealing patterns of interactions within different categories of Facebook pages.
-5. **Page Characterization:** Use machine learning techniques like RandomWalk to characterize Facebook pages based on features and network structure, providing insights into their roles and behaviors within the network.
 
-## Implementation
-The project is implemented using Python programming language, with the aid of libraries such as Pandas, Numpy, NetworkX, Matplotlib, scikit-learn and Gensim. Code files and datasets are included in the repository for replication and further analysis.
+### 1. Graph Visualization
+- Construct graphs with NetworkX using edge lists
+- Spring layout visualization with custom styling
+- Nodes represent pages; edges represent mutual likes
 
-## Results
-The results section provides a detailed analysis of the findings obtained from each stage of the methodology:
-- **Graph Visualization:** Effectively portrays network structure, with nodes representing unique users/accounts and edges revealing connections.
-- **Centrality Measures:** Provided insights into individual accounts' structural dynamics and influence within respective categories.
-- **Statistical Analysis:** Revealed structural insights; "Companies" emerged with highest node count, "Government" with most edges and highest average degree and clustering coefficient.
-- **Community Detection:** Unveiled distinct clusters within each category; "Government" exhibited 22 communities, "TV Shows" displayed 60 communities, "Company" presented 195 communities, and "Politician" showed 36 communities.
-- **Page Characterisation:** Achieved testing accuracy of 0.9096573208722741, indicating effectiveness in classifying Facebook pages based on features and network attributes.
+### 2. Centrality Analysis
+- Compute **Degree Centrality**: measures popularity (number of connections)
+- Compute **Closeness Centrality**: measures reachability across network
+- Compute **Betweenness Centrality**: identifies bridges and flow controllers
+
+### 3. Statistical Analysis
+- Number of nodes and edges
+- Average degree: network density
+- Clustering coefficient: degree of triadic closure
+
+### 4. Community Detection
+- Use **Greedy Modularity Optimization** to find dense clusters within categories
+- Visualize communities using subgraph spring layouts
+- Report number of communities per category
+
+### 5. Page Characterization (ML)
+- Use **RandomWalk-based Word2Vec** embeddings for structural feature learning
+- Train **Random Forest Classifier** on learned embeddings to predict page type
+- Evaluate using accuracy, confusion matrix, F1 score
+
+---
+
+## Result Highlights
+
+| Category     | Nodes | Edges  | Avg Degree | Clustering Coef | Communities |
+|--------------|-------|--------|-------------|------------------|-------------|
+| Government   | 7057  | 89455  | 25.35       | 0.41             | 22          |
+| TV Shows     | 3892  | 17262  | 8.87        | 0.37             | 60          |
+| Company      | 14113 | 52310  | 7.41        | 0.24             | 195         |
+| Politicians  | 5908  | 41729  | 14.13       | 0.39             | 36          |
+
+**Page Classification Accuracy**: **90.96%** using Random Forest on structural embeddings.
+
+> Outputs are present directly in the Jupyter notebooks.
+
+---
+
+## Repository Structure
+
+```
+├── data/
+│   └── facebook_clean_data/       # Raw edge lists per category
+    ├── dataset_description.txt
+├── notebooks/
+│   ├── 1_graph_visualization.ipynb
+│   ├── 2_centrality_analysis.ipynb
+│   ├── 3_statistical_analysis.ipynb
+│   ├── 4_community_detection.ipynb
+│   └── 5_page_characterisation.ipynb
+├── LICENSE
+└── README.md
+```
+
+---
 
 ## Conclusion
-In conclusion, the project contributes to a deeper understanding of social media influence and interactions on Facebook. By employing a comprehensive methodology encompassing graph theory, machine learning, and statistical analysis, the project provides valuable insights into the dynamics of social media networks and their implications for digital communication and influence.
+
+This project demonstrates the effective application of discrete mathematics and network science to real-world social media data. By combining classical centrality analysis with modern graph embeddings and ML classification, it provides a holistic understanding of influence dynamics and page behavior in Facebook’s verified page ecosystem.
+
+The multi-stage pipeline—spanning visualization, statistical analysis, community clustering, and predictive modeling—offers a versatile framework for social network analysis. Future extensions may involve temporal dynamics, multi-platform integration, and Graph Neural Networks.
+
+---
 
 ## Contributors
-- Shruti Sivakumar
+
+- **Shruti Sivakumar**
 - Harshitha Chandrasekar
 - Shreya Sriram
 - Vida Nadheera
 
+---
+
 ## License
-This project is licensed under the terms of the MIT License. See the [LICENSE](LICENSE) file for details.
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file.
