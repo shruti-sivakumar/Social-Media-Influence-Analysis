@@ -104,8 +104,8 @@ The multi-stage pipeline—spanning visualization, statistical analysis, communi
 
 - **Shruti Sivakumar**
 - Harshitha Chandrasekar
-- Shreya Sriram
-- Vida Nadheera
+- [Shreya Sriram](https://github.com/Shreya12125)
+- [Vida Nadheera](https://github.com/Vida181105)
 
 ---
 
