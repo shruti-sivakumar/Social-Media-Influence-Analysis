@@ -1,6 +1,6 @@
 # Social Media Influence Analysis
 
-This project presents a technically rigorous exploration of social media networks using graph theory and machine learning. By analyzing Facebook page interactions from the [SNAP dataset repository](http://snap.stanford.edu/data/gemsec-Facebook.html), it investigates influence dynamics, network structure, and page behavior using advanced network science techniques.
+This project presents an exploration of social media networks using graph theory and machine learning during my early stages of university. By analyzing Facebook page interactions from the [SNAP dataset repository](http://snap.stanford.edu/data/gemsec-Facebook.html), it investigates influence dynamics, network structure, and page behavior using advanced network science techniques.
 
 ---
 
